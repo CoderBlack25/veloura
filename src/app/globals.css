@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * Veloura design tokens
+ * Source of truth: PRD Section 5 (Brand & Design Direction). Every color
+ * used anywhere in the UI should trace back to one of these — don't reach
+ * for an arbitrary Tailwind color when adding a new component.
+ * ------------------------------------------------------------------------ */
+@theme {
+  /* Primary earthy tones */
+  --color-brown-dark: #423027;
+  --color-brown-main: #574238;
+  --color-brown-soft: #594840;
+
+  /* Greens / muted natural tones */
+  --color-green-main: #8a9675;
+  --color-green-variant: #8e9a7a;
+  --color-green-soft: #8a9676;
+
+  /* Neutral greys */
+  --color-gray-main: #4b5563;
+
+  /* Light backgrounds / creams */
+  --color-cream-light: #fffcf4;
+  --color-cream-soft: #f9f6f0;
+  --color-cream-muted: #f3ebe4;
+  --color-cream-alt: #eee2db;
+
+  /* Beige / warm neutrals */
+  --color-beige-main: #d7c5bc;
+  --color-beige-soft: #d4d7c5;
+  --color-beige-muted: #cccfba;
+  --color-beige-light: #ddded4;
+  --color-beige-variant: #e2e6da;
+
+  /* Semantic aliases — what components should actually reach for */
+  --color-background: var(--color-cream-light);
+  --color-foreground: var(--color-brown-dark);
+  --color-surface: var(--color-cream-soft);
+  --color-surface-muted: var(--color-cream-muted);
+  --color-border: var(--color-beige-main);
+  --color-primary: var(--color-brown-dark);
+  --color-primary-foreground: var(--color-cream-light);
+  --color-accent: var(--color-green-main);
+  --color-accent-foreground: var(--color-cream-light);
+  --color-muted-foreground: var(--color-gray-main);
+  --color-destructive: #a13a2f;
+  --color-destructive-foreground: var(--color-cream-light);
+  --color-ring: var(--color-green-main);
+
+  /* Type */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.9rem;
+  --radius-xl: 1.4rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  /* Visible keyboard focus everywhere — never remove this without a replacement. */
+  :focus-visible {
+    outline: 2px solid var(--color-green-main);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
